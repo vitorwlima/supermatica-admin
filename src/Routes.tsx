@@ -1,26 +1,59 @@
-import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { Home, Login } from './views'
+import React, { Fragment, lazy, Suspense } from 'react'
+import { Route, Switch, BrowserRouter } from 'react-router-dom'
+import { AuthGuard, GuestGuard, Loader } from './components'
 
 const routesConfig = [
   {
+    exact: true,
+    guard: AuthGuard,
     path: '/',
-    component: Home,
+    component: lazy(() => import('./views/Home')),
   },
   {
+    exact: true,
+    guard: GuestGuard,
     path: '/login',
-    component: Login,
+    component: lazy(() => import('./views/Login')),
+  },
+  {
+    exact: true,
+    path: '/questions',
+    component: lazy(() => import('./views/Questions')),
   },
 ]
 
-const Routes = (): any => (
-  <BrowserRouter>
-    <Switch>
-      {routesConfig.map((route: any, i: number) => (
-        <Route path={route.path} component={route.component} key={i} exact />
-      ))}
-    </Switch>
-  </BrowserRouter>
-)
+const renderRoutes = (routes: any) =>
+  routes ? (
+    <Suspense fallback={<Loader />}>
+      <BrowserRouter>
+        <Switch>
+          {routes.map((route: any, i: number) => {
+            const Guard = route.guard ? route.guard : Fragment
+
+            const Component = route.component
+
+            return (
+              <Route
+                key={i}
+                path={route.path}
+                exact={route.exact}
+                render={(props): JSX.Element => (
+                  <Guard>
+                    <>
+                      <Component {...props} />
+                    </>
+                  </Guard>
+                )}
+              />
+            )
+          })}
+        </Switch>
+      </BrowserRouter>
+    </Suspense>
+  ) : null
+
+function Routes() {
+  return renderRoutes(routesConfig)
+}
 
 export default Routes

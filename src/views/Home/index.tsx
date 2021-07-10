@@ -1,6 +1,8 @@
 import React from 'react'
 import { Container } from './styles'
 
-export const Home = () => {
+const Home = () => {
   return <Container>home</Container>
 }
+
+export default Home

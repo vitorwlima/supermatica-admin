@@ -1,5 +1,12 @@
 import axios from 'axios'
 
-const api = axios.create()
+const token = localStorage.getItem('token')
+
+const api = axios.create({
+  baseURL: process.env.REACT_APP_SERVER,
+  headers: {
+    Authorization: 'Bearer ' + token,
+  },
+})
 
 export default api
