@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { Button, Header, Input } from '../../components'
 import api from '../../services/api'
-import { Container } from './styles'
+import { ButtonsWrapperModal, Container, DeleteIcon } from './styles'
+import Modal from 'react-modal'
 
 interface IParams {
   id: string
@@ -13,6 +14,19 @@ const Subject = () => {
   const history = useHistory()
 
   const [subjectValue, setSubjectValue] = useState('')
+  const [isOpen, setIsOpen] = useState(false)
+
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      padding: '32px',
+    },
+  }
 
   useEffect(() => {
     if (id) {
@@ -36,6 +50,18 @@ const Subject = () => {
       console.log(err)
     }
   }
+  const handleOpenConfirmationModal = () => {
+    setIsOpen(true)
+  }
+
+  const handleDeleteSubject = async () => {
+    try {
+      await api.delete(`/subject/${id}`)
+      history.push('/')
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <Container>
@@ -48,8 +74,21 @@ const Subject = () => {
           value={subjectValue}
           onChange={e => setSubjectValue(e.currentTarget.value)}
         />
-        <Button onClick={handleSaveSubject}>Salvar</Button>
+        <div className='buttonsWrapper'>
+          <Button onClick={handleSaveSubject}>Salvar</Button>
+          <Button onClick={handleOpenConfirmationModal}>
+            <DeleteIcon />
+          </Button>
+        </div>
       </div>
+
+      <Modal style={customStyles} isOpen={isOpen} onRequestClose={() => setIsOpen(false)}>
+        Tem certeza que deseja deletar essa matéria?
+        <ButtonsWrapperModal>
+          <Button onClick={() => setIsOpen(false)}>Cancelar</Button>
+          <Button onClick={handleDeleteSubject}>Deletar</Button>
+        </ButtonsWrapperModal>
+      </Modal>
     </Container>
   )
 }

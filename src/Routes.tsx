@@ -4,25 +4,26 @@ import { AuthGuard, GuestGuard, Loader } from './components'
 
 const routesConfig = [
   {
-    exact: true,
     guard: AuthGuard,
     path: '/',
     component: lazy(() => import('./views/Home')),
   },
   {
-    exact: true,
     guard: GuestGuard,
     path: '/login',
     component: lazy(() => import('./views/Login')),
   },
   {
-    exact: true,
     guard: AuthGuard,
     path: '/questions',
     component: lazy(() => import('./views/Questions')),
   },
   {
-    exact: true,
+    guard: AuthGuard,
+    path: '/subject/create',
+    component: lazy(() => import('./views/SubjectCreate')),
+  },
+  {
     guard: AuthGuard,
     path: '/subject/:id',
     component: lazy(() => import('./views/Subject')),
@@ -41,9 +42,9 @@ const renderRoutes = (routes: any) =>
 
             return (
               <Route
+                exact
                 key={i}
                 path={route.path}
-                exact={route.exact}
                 render={(props): JSX.Element => (
                   <Guard>
                     <>

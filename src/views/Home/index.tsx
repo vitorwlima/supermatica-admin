@@ -25,7 +25,7 @@ const Home = () => {
     history.push(`/subject/${id}`)
   }
   const handleNewSubject = () => {
-    history.push('/subject')
+    history.push('/subject/create')
   }
 
   return (
