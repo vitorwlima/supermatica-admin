@@ -10,5 +10,9 @@ export const Container = styled.div`
     margin-top: 100px;
     width: 100%;
     max-width: 70rem;
+
+    div {
+      width: 100%;
+    }
   }
 `
