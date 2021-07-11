@@ -1,17 +1,11 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { Header } from '../../components'
 import { Container } from './styles'
 
 const Questions = () => {
-  const history = useHistory()
-
-  const handleGoHome = () => {
-    history.push('/')
-  }
-
   return (
     <Container>
-      <button onClick={handleGoHome}>oi</button>
+      <Header />
     </Container>
   )
 }

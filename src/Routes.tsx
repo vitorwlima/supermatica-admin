@@ -17,6 +17,7 @@ const routesConfig = [
   },
   {
     exact: true,
+    guard: AuthGuard,
     path: '/questions',
     component: lazy(() => import('./views/Questions')),
   },
