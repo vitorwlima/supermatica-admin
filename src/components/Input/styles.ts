@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  input {
+  input,
+  textarea {
     width: 100%;
     outline: none;
     font-size: 1rem;
@@ -9,5 +10,6 @@ export const Container = styled.div`
     padding: 0.5em;
     margin-top: 8px;
     margin-bottom: 16px;
+    resize: none;
   }
 `

@@ -4,8 +4,8 @@ import { BongIcon, Container, EditIcon } from './styles'
 
 interface ICardProps {
   children: ReactNode
-  onClickEdit: React.MouseEventHandler<HTMLButtonElement>
-  onClickBong: React.MouseEventHandler<HTMLButtonElement>
+  onClickEdit?: React.MouseEventHandler<HTMLButtonElement>
+  onClickBong?: React.MouseEventHandler<HTMLButtonElement>
 }
 
 const Card = ({ children, onClickEdit, onClickBong }: ICardProps) => {
@@ -13,12 +13,16 @@ const Card = ({ children, onClickEdit, onClickBong }: ICardProps) => {
     <Container>
       {children}
       <div className='buttonsWrapper'>
-        <Button onClick={onClickBong}>
-          <BongIcon />
-        </Button>
-        <Button onClick={onClickEdit}>
-          <EditIcon />
-        </Button>
+        {onClickBong && (
+          <Button onClick={onClickBong}>
+            <BongIcon />
+          </Button>
+        )}
+        {onClickEdit && (
+          <Button onClick={onClickEdit}>
+            <EditIcon />
+          </Button>
+        )}
       </div>
     </Container>
   )

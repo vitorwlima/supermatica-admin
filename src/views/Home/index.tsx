@@ -20,10 +20,14 @@ const Home = () => {
     getSubjects()
   }, [])
 
-  const handleOpenQuestions = (id: string) => {}
+  const handleOpenQuestions = (id: string) => {
+    history.push(`/questions/${id}`)
+  }
+
   const handleEditSubject = (id: string) => {
     history.push(`/subject/${id}`)
   }
+
   const handleNewSubject = () => {
     history.push('/subject/create')
   }
