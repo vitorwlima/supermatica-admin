@@ -10,25 +10,11 @@ interface InputProps {
   min?: number
 }
 
-export const Input = ({
-  type,
-  nameId,
-  label,
-  value,
-  onChange,
-  min,
-}: InputProps) => {
+export const Input = ({ type, nameId, label, value, onChange, min }: InputProps) => {
   return (
     <Container>
       <label htmlFor={nameId}>{label}</label>
-      <input
-        type={type}
-        name={nameId}
-        id={nameId}
-        value={value}
-        onChange={onChange}
-        min={min}
-      />
+      <input type={type} name={nameId} id={nameId} value={value} onChange={onChange} min={min} />
     </Container>
   )
 }

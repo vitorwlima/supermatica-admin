@@ -21,6 +21,12 @@ const routesConfig = [
     path: '/questions',
     component: lazy(() => import('./views/Questions')),
   },
+  {
+    exact: true,
+    guard: AuthGuard,
+    path: '/subject/:id',
+    component: lazy(() => import('./views/Subject')),
+  },
 ]
 
 const renderRoutes = (routes: any) =>

@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Button, Header } from '../../components'
 import Card from '../../components/Card'
+import { ISubject } from '../../interfaces'
 import api from '../../services/api'
 import { Container } from './styles'
 
-interface ISubject {
-  _id: string
-  subjectText: string
-}
-
 const Home = () => {
   const [subjects, setSubjects] = useState<ISubject[]>([])
+
+  const history = useHistory()
 
   useEffect(() => {
     const getSubjects = async () => {
@@ -22,8 +21,12 @@ const Home = () => {
   }, [])
 
   const handleOpenQuestions = (id: string) => {}
-  const handleEditSubject = (id: string) => {}
-  const handleNewSubject = () => {}
+  const handleEditSubject = (id: string) => {
+    history.push(`/subject/${id}`)
+  }
+  const handleNewSubject = () => {
+    history.push('/subject')
+  }
 
   return (
     <Container>
