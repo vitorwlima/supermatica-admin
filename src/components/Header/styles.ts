@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { FaUser } from 'react-icons/fa'
 
 export const Container = styled.header`
   background-color: #209ff3;
@@ -12,13 +11,32 @@ export const Container = styled.header`
     background-color: transparent;
     cursor: pointer;
   }
+
+  .accountMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #eee;
+    position: relative;
+
+    .user {
+      padding: 20px 0;
+    }
+
+    &:hover {
+      .logoutButton {
+        display: block;
+      }
+    }
+  }
+
+  .logoutButton {
+    display: none;
+    position: absolute;
+    top: 50px;
+  }
 `
 
 export const Logo = styled.img`
   max-height: 60px;
-`
-
-export const UserIcon = styled(FaUser)`
-  font-size: 24px;
-  fill: #28292a;
 `
