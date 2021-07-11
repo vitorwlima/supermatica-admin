@@ -28,7 +28,9 @@ const Questions = () => {
     getQuestions()
   }, [id])
 
-  const handleEditQuestion = () => {}
+  const handleEditQuestion = (questionId: string) => {
+    history.push(`/question/edit/${questionId}`)
+  }
 
   const handleCreateQuestion = () => {
     history.push(`/question/create/${id}`)
@@ -39,7 +41,7 @@ const Questions = () => {
       <Header />
       <div className='questionsWrapper'>
         {questions.map(question => (
-          <Card onClickEdit={handleEditQuestion}>{question.questionText}</Card>
+          <Card onClickEdit={() => handleEditQuestion(question._id)}>{question.questionText}</Card>
         ))}
         <Button onClick={handleCreateQuestion}>Criar novo exercício</Button>
       </div>

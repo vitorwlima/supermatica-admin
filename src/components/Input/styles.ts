@@ -11,5 +11,6 @@ export const Container = styled.div`
     margin-top: 8px;
     margin-bottom: 16px;
     resize: none;
+    font-family: inherit;
   }
 `

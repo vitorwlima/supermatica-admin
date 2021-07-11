@@ -38,6 +38,11 @@ const routesConfig = [
     path: '/question/create/:id',
     component: lazy(() => import('./views/QuestionCreate')),
   },
+  {
+    guard: AuthGuard,
+    path: '/question/edit/:id',
+    component: lazy(() => import('./views/QuestionEdit')),
+  },
 ]
 
 const renderRoutes = (routes: any) =>
